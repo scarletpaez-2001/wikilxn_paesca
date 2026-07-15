@@ -9,7 +9,7 @@
 ![Configuración de la VM parte 2](/img_paesca/inst_config2.png)
 
 * **Configuración de Red**: Adaptador 1 en modo NAT.
-* **Reglas de Reenvío de Puertos (Port Forwarding)**:
+* **Reglas de Reenvío de Puertos**:
   * Servicio SSH: Puerto Anfitrión `2222` $\rightarrow$ Puerto Invitado `22`.
   * Servicio Web: Puerto Anfitrión `8080` $\rightarrow$ Puerto Invitado `80`.
 
@@ -17,7 +17,7 @@
 ![Regla SSH en VirtualBox 2](/img_paesca/config_ssh2.png)
 
 # 2. Traducción Técnica de Comandos de Inicialización
-# Para la conexión al servidor, me conecté desde la terminal de la máquina física hacia la máquina virtual usando SSH:
+Para la conexión al servidor, me conecté desde la terminal de la máquina física hacia la máquina virtual usando SSH:
 ![Conectar PC Terminal 1](/img_paesca/conectar_pc1.png)
 ![Conectar PC Terminal 2](/img_paesca/conectar_pc2.png)
 
