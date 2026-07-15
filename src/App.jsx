@@ -1,122 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import './App.css';
+
+// Importación estática de los archivos Markdown 
+import inicioMD from '../dosc_paesca/01_inicio_paesca.md?raw';
+import libreMD from '../dosc_paesca/02_A_software_libre_paesca.md?raw';
+import instalMD from '../dosc_paesca/03_B_instalacion_config_paesca.md?raw';
+import permisosMD from '../dosc_paesca/04_C_permisos_linea_comandos_paesca.md?raw';
+import paquetesMD from '../dosc_paesca/05_D_gestor_paquetes_paesca.md?raw';
+import nginxMD from '../dosc_paesca/06_E_nginx_despliegue_paesca.md?raw';
+import bitacoraMD from '../dosc_paesca/07_bitacora_ia_paesca.md?raw';
+
+const documentos = [
+  { id: '01', titulo: 'Portada e Inicio', contenido: inicioMD },
+  { id: '02', titulo: 'Software Libre', contenido: libreMD },
+  { id: '03', titulo: 'Instalación y Base', contenido: instalMD },
+  { id: '04', titulo: 'Permisos por Consola', contenido: permisosMD },
+  { id: '05', titulo: 'Gestor de Paquetes', contenido: paquetesMD },
+  { id: '06', titulo: 'Nginx y Despliegue', contenido: nginxMD },
+  { id: '07', titulo: 'Bitácora de IA', contenido: bitacoraMD }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [docSeleccionado, setDocSeleccionado] = useState(documentos[0]);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="wiki-container">
+      {/* Menú Lateral */}
+      <aside className="wiki-sidebar">
+        <h2 className="wiki-title">WIKILXN</h2>
+        <nav className="wiki-nav">
+          {documentos.map((doc) => (
+            <button
+              key={doc.id}
+              className={`wiki-nav-item ${docSeleccionado.id === doc.id ? 'active' : ''}`}
+              onClick={() => setDocSeleccionado(doc)}
+            >
+              {doc.id}. {doc.titulo}
+            </button>
+          ))}
+        </nav>
+      </aside>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* Contenido Principal */}
+      <main className="wiki-content">
+        <div className="markdown-body">
+          <ReactMarkdown>{docSeleccionado.contenido}</ReactMarkdown>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
