@@ -11,10 +11,11 @@ En este bloque abordaré la administración de software en distribuciones basada
 
 * **`apt show htop`**  
   Despliega la ficha técnica descriptiva del paquete "htop". Muestra información crítica como el número de versión, el tamaño que ocupará en el disco, las dependencias de software necesarias para que funcione y una breve descripción de su utilidad.
+  ![Búsqueda y visualización de ficha técnica htop](/img_paesca/gest_paquetes1.png)
 
 * **`sudo apt install -y htop tree`**  
   Descarga e instala en el sistema las herramientas `htop` (monitor de recursos) y `tree` (visualizador de directorios en árbol). El parámetro `-y` responde automáticamente "sí" a la confirmación de descarga, permitiendo una instalación desatendida, y el uso de `sudo` eleva los privilegios necesarios para modificar el software del sistema.
-
+![Instalación de paquetes htop y tree](/img_paesca/gest_paquetes2.png)
 
 
 # 2. Actividad de Análisis: Flujo de Trabajo de APT
