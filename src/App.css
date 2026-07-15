@@ -29,6 +29,21 @@ body {
   padding: 20px;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
 .wiki-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -72,6 +87,50 @@ body {
   padding: 40px;
   overflow-y: auto;
   background-color: var(--bg-primary);
+}
+
+.mobile-header {
+  display: none;
+  background: linear-gradient(90deg, rgba(0,0,0,0.2), rgba(0,0,0,0.05));
+  padding: 10px 16px;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 1.25rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mobile-title {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Sidebar open/close on mobile */
+.wiki-sidebar.closed {
+  transform: translateX(-110%);
+  transition: transform 240ms ease;
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.wiki-sidebar.open {
+  transform: translateX(0);
+  transition: transform 240ms ease;
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  height: 100vh;
 }
 
 .markdown-body {
@@ -121,4 +180,29 @@ body {
   border-radius: 6px;
   margin: 20px 0;
   border: 1px solid var(--border-color);
+}
+
+/* Responsive */
+@media (max-width: 840px) {
+  .wiki-container {
+    display: block;
+    height: 100vh;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .wiki-sidebar {
+    width: 280px;
+    padding-top: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  }
+
+  .wiki-content {
+    padding: 20px;
+    margin-top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
 }
