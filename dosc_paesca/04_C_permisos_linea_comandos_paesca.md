@@ -14,9 +14,11 @@ En esta sección detallaré el uso de comandos para la gestión, asignación y c
 
 * **`chmod 600 nota.txt`**  
   Modifica los permisos de `nota.txt` de manera numérica. Otorga permisos de lectura y escritura al propietario del archivo, quitándole absolutamente todos los accesos al grupo y a otros usuarios del sistema.
-
+  
 * **`chmod u+x,go-rwx privado`**  
   Modifica los permisos de la carpeta `privado` de manera simbólica. Le añade permisos de ejecución (`+x`) al usuario propietario (`u`), y al mismo tiempo le quita (`-`) los permisos de lectura, escritura y ejecución (`rwx`) al grupo (`g`) y a otros (`o`).
+
+  ![Pruebas de Permisos Iniciales](/img_paesca/permisos1.png)
 
 * **`sudo chown root:root nota.txt`**  
   Cambia el propietario y el grupo del archivo `nota.txt` para que pertenezcan al súper usuario administrador (`root`). Al usar `sudo`, el sistema nos solicita privilegios elevados para poder ejecutar el cambio.
@@ -29,7 +31,7 @@ En esta sección detallaré el uso de comandos para la gestión, asignación y c
 
 * **`ls -ld /srv/compartido /tmp`**  
   Muestra detalladamente los permisos y propiedades únicamente de los directorios `/srv/compartido` y `/tmp`, sin listar todo el contenido que guardan dentro.
-
+![Configuración de Permisos Especiales y Propietarios](/img_paesca/permisos2.png)
 
 
 # 2. Actividad de Análisis: Permisos y Control de Acceso
@@ -46,7 +48,7 @@ Esta cadena representa un archivo regular y se lee dividiendo sus caracteres en 
 # Comparativa: Método Numérico (Octal) vs Método Simbólico
 Ambos métodos sirven para configurar los accesos de seguridad usando el comando `chmod`, pero se aplican de manera distinta:
 
-* **Método Numérico **: Utiliza números basados en el sistema binario asignando un peso a cada acción: **Lectura (4)**, **Escritura (2)** y **Ejecución (1)**. Se suman los valores para definir el permiso de cada perfil (dueño/grupo/otros).  
+* **Método Numérico**: Utiliza números basados en el sistema binario asignando un peso a cada acción: Lectura (4), Escritura (2) y Ejecución (1). Se suman los valores para definir el permiso de cada perfil (dueño/grupo/otros).  
   * Por ejemplo: `chmod 640 archivo` (6 = lectura+escritura para el dueño; 4 = solo lectura para el grupo; 0 = ningún acceso para otros).
 * **Método Simbólico**: Utiliza letras y operadores para modificar accesos puntuales sin alterar el resto de los permisos existentes. Se usan las letras `u` (dueño), `g` (grupo), `o` (otros) o `a` (todos), junto con los operadores `+` (añadir) o `-` (quitar).  
   * Por ejemplo: `chmod g+w archivo` (solo agrega el permiso de escritura al grupo, manteniendo intactos los accesos del dueño y de otros).
@@ -59,8 +61,9 @@ El comando `chown` se utiliza para traspasar la propiedad y el control de un arc
 
 # ¿Qué hacen los Permisos Especiales?
 
-* **Bit SETGID (representado por la letra `s` en el grupo)**:  
+* **Bit SETGID** (representado por la letra `s` en el grupo):  
   Cuando se aplica a un directorio, obliga a que cualquier archivo o carpeta que se cree en su interior herede automáticamente el grupo dueño del directorio principal, en lugar de heredar el grupo primario del usuario que lo creó. Es ideal para carpetas compartidas donde trabajan varios usuarios del mismo departamento.
 
-* **Sticky Bit (representado por la letra `t` al final de la cadena)**:  
+* **Sticky Bit** (representado por la letra `t` al final de la cadena):  
   Se aplica a directorios compartidos o públicos (como `/tmp`). Su función es evitar que un usuario pueda borrar o renombrar archivos que pertenecen a otro compañero de trabajo, limitando el derecho de borrado únicamente al dueño real del archivo o al administrador del sistema.
+  
